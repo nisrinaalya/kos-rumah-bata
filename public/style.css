@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Kos Rumah Bata — Design System */
+@layer base {
+  :root {
+    --background: 0 0% 98%;             /* #FAFAFA */
+    --foreground: 20 14% 16%;
+
+    --surface: 0 0% 100%;               /* #FFFFFF */
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 16%;
+
+    --primary: 14 58% 56%;              /* #D16A4C terracotta */
+    --primary-foreground: 30 38% 96%;
+    --primary-soft: 14 65% 92%;
+
+    --secondary: 30 38% 95%;            /* #FAF4EF cream */
+    --secondary-foreground: 20 14% 16%;
+
+    --muted: 30 25% 94%;
+    --muted-foreground: 20 8% 42%;
+
+    --accent: 96 14% 62%;               /* #9BAF8F sage */
+    --accent-foreground: 0 0% 100%;
+
+    --highlight: 14 75% 79%;            /* #F2B8A2 */
+    --highlight-foreground: 20 14% 16%;
+
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 60% 40%;
+    --warning: 38 92% 50%;
+
+    --border: 25 20% 88%;
+    --input: 25 20% 90%;
+    --ring: 14 58% 56%;
+
+    --radius: 0.875rem;
+
+    --shadow-soft: 0 4px 16px -4px hsl(20 14% 16% / 0.08);
+    --shadow-card: 0 8px 24px -10px hsl(20 14% 16% / 0.10);
+    --shadow-elevated: 0 20px 40px -16px hsl(14 58% 40% / 0.20);
+
+    --gradient-primary: linear-gradient(135deg, hsl(14 58% 56%), hsl(14 75% 65%));
+    --gradient-warm: linear-gradient(180deg, hsl(30 38% 96%), hsl(0 0% 100%));
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 20 14% 10%;
+    --foreground: 30 38% 96%;
+    --surface: 20 14% 13%;
+    --card: 20 14% 13%;
+    --card-foreground: 30 38% 96%;
+    --popover: 20 14% 13%;
+    --popover-foreground: 30 38% 96%;
+    --primary: 14 65% 60%;
+    --primary-foreground: 20 14% 10%;
+    --secondary: 20 14% 18%;
+    --secondary-foreground: 30 38% 96%;
+    --muted: 20 14% 18%;
+    --muted-foreground: 30 10% 65%;
+    --accent: 96 14% 55%;
+    --accent-foreground: 20 14% 10%;
+    --border: 20 14% 22%;
+    --input: 20 14% 22%;
+    --ring: 14 65% 60%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { font-family: 'Inter', system-ui, sans-serif; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  h1, h2, h3, h4 { @apply font-semibold tracking-tight; }
+}
+
+@layer utilities {
+  .container-app { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .profile-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .profile-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+    width: 100%;
+  }
+  .profile-sidebar { display: none; }
+  .profile-content {
+    width: 100%;
+    min-width: 0;
+    min-height: 500px;
+  }
+  .profile-content > * { width: 100%; }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-warm { background: var(--gradient-warm); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .room-page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+  .room-page-layout {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .room-filter-section { width: 100%; }
+  .room-content-section {
+    width: 100%;
+    min-height: 500px;
+  }
+  .room-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 640px) {
+    .room-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .room-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .room-empty-state {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 640px) {
+    .room-page-wrapper { padding: 16px 12px; }
+  }
+
+  .activity-page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 32px 24px;
+  }
+  .activity-page-layout {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .activity-header,
+  .activity-filter-section { width: 100%; }
+  .activity-feed-section {
+    width: 100%;
+    min-height: 600px;
+  }
+  .activity-feed { width: 100%; }
+  .activity-card { width: 100%; }
+  .activity-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .activity-empty-feed {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 767px) {
+    .activity-page-wrapper { padding: 16px 12px; }
+    .activity-page-layout { max-width: 100%; }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .activity-page-layout { max-width: 700px; }
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .profile-sidebar {
+    display: block;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    flex: 0 0 280px;
+    flex-shrink: 0;
+  }
+  .profile-content {
+    flex: 1 1 0%;
+    min-width: 0;
+    width: auto;
+  }
+}
